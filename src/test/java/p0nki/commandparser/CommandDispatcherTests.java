@@ -8,8 +8,6 @@ import p0nki.commandparser.argument.IntegerArgumentType;
 import p0nki.commandparser.node.ArgumentCommandNode;
 import p0nki.commandparser.node.LiteralCommandNode;
 
-import java.util.Set;
-
 @SuppressWarnings("unused")
 public class CommandDispatcherTests {
 
@@ -18,7 +16,7 @@ public class CommandDispatcherTests {
     @BeforeClass
     public static void registerCommands() {
         dispatcher = new CommandDispatcher<>();
-        dispatcher.register(new LiteralCommandNode<String, Integer>("test", Set.of("test2"))
+        dispatcher.register(new LiteralCommandNode<String, Integer>("test", "test2")
                 .then(new LiteralCommandNode<String, Integer>("a")
                         .documentation("Returns 1")
                         .executes(context -> 1)
@@ -33,7 +31,7 @@ public class CommandDispatcherTests {
                                 .executes(context -> context.get("argname", Integer.class))
                         )
                 )
-                .then(new LiteralCommandNode<String, Integer>("alias1", Set.of("alias2", "alias3"))
+                .then(new LiteralCommandNode<String, Integer>("alias1", "alias2", "alias3")
                         .requires(new CommandRequirement<>() {
                             @Override
                             public boolean isAvailableTo(String s) {
