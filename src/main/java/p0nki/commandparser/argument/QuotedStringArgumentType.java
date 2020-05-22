@@ -11,9 +11,9 @@ public class QuotedStringArgumentType<S> implements ArgumentType<S, String> {
         return ch == '\'' || ch == '\"';
     }
 
-    private boolean isEscape(char ch) {
-        return ch == '/';
-    }
+//    private boolean isEscape(char ch) {
+//        return ch == '/';
+//    }
 
     @Override
     public Optional<String> parse(CommandContext<S> context, CommandReader reader) {
