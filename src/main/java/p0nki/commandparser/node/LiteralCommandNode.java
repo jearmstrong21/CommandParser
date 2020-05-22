@@ -15,6 +15,10 @@ public class LiteralCommandNode<S, R> extends CommandNode<S, R> {
         this(new HashSet<>(Arrays.asList(values)));
     }
 
+    public Set<String> getLiterals() {
+        return literals;
+    }
+
     public LiteralCommandNode(Set<String> alias) {
         super(String.join(", ", alias));
         literals = alias;

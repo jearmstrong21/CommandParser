@@ -20,6 +20,10 @@ public class CommandDispatcher<S, R> {
         root.then(node);
     }
 
+    public RootCommandNode<S, R> getRoot() {
+        return root;
+    }
+
     public TreeResults<S, R> descendTree(S source, String str) {
         CommandReader reader = new CommandReader(str);
         List<CommandNode<S, R>> nodes = root.getChildren();
