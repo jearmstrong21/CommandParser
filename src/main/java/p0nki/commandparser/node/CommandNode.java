@@ -1,9 +1,9 @@
 package p0nki.commandparser.node;
 
-import p0nki.commandparser.Command;
-import p0nki.commandparser.CommandContext;
-import p0nki.commandparser.CommandReader;
-import p0nki.commandparser.CommandRequirement;
+import p0nki.commandparser.command.Command;
+import p0nki.commandparser.command.CommandContext;
+import p0nki.commandparser.command.CommandReader;
+import p0nki.commandparser.command.CommandRequirement;
 
 import java.util.*;
 
@@ -21,6 +21,10 @@ public abstract class CommandNode<S, R> {
         this.name = name;
         this.executes = Optional.empty();
         documentation = Optional.empty();
+    }
+
+    public Optional<Command<S, R>> getExecutes() {
+        return executes;
     }
 
     public Optional<String> getDocumentation() {
@@ -60,8 +64,8 @@ public abstract class CommandNode<S, R> {
         return this;
     }
 
-    public final boolean isExecutable() {
-        return executes.isPresent();
+    public final boolean isIntermediateNode() {
+        return executes.isEmpty();
     }
 
     public final R execute(CommandContext<S> context) {

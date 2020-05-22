@@ -1,4 +1,4 @@
-package p0nki.commandparser;
+package p0nki.commandparser.command;
 
 import java.util.function.Predicate;
 

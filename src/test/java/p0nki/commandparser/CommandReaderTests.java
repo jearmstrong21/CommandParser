@@ -2,9 +2,7 @@ package p0nki.commandparser;
 
 import org.junit.Assert;
 import org.junit.Test;
-import p0nki.commandparser.argument.IntegerArgumentType;
-import p0nki.commandparser.node.ArgumentCommandNode;
-import p0nki.commandparser.node.LiteralCommandNode;
+import p0nki.commandparser.command.CommandReader;
 
 @SuppressWarnings("unused")
 public class CommandReaderTests {
