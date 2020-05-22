@@ -3,6 +3,9 @@ apply plugin: 'maven'
 
 group = 'com.github.jearmstrong21'
 
+sourceCompatibility = 11
+targetCompatibility = 11
+
 repositories {
     mavenCentral()
 }
