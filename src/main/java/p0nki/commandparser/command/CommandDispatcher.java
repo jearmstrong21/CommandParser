@@ -99,10 +99,12 @@ public class CommandDispatcher<S, R> {
             nodes.remove(0);
             int depth = depths.get(0);
             depths.remove(0);
-            sb.append("\t".repeat(depth)).append(node.toString());
-            node.getDocumentation().ifPresent(docs -> sb.append("\n").append("\t".repeat(depth)).append("\tDocumentation: ").append(docs));
+            StringBuilder depthTabs = new StringBuilder();
+            for (int i = 0; i < depth; i++) depthTabs.append("\t");
+            sb.append(depthTabs).append(node.toString());
+            node.getDocumentation().ifPresent(docs -> sb.append("\n").append(depthTabs).append("\tDocumentation: ").append(docs));
             if (node.getRequirements().size() > 0) {
-                sb.append("\n").append("\t".repeat(depth)).append("\tRequirements: ").append(node.getRequirements().stream().map(CommandRequirement::documentation).collect(Collectors.joining(", ")));
+                sb.append("\n").append(depthTabs).append("\tRequirements: ").append(node.getRequirements().stream().map(CommandRequirement::documentation).collect(Collectors.joining(", ")));
             }
             sb.append("\n");
             nodes.addAll(0, node.getChildren());

@@ -65,12 +65,12 @@ public abstract class CommandNode<S, R> {
     }
 
     public final boolean isIntermediateNode() {
-        return executes.isEmpty();
+        return !executes.isPresent();
     }
 
     public final R execute(CommandContext<S> context) {
         if (!isAvailableTo(context.source())) throw new IllegalArgumentException("This shouldn't be happening");
-        if (executes.isEmpty()) throw new IllegalArgumentException("This shouldn't be happening");
+        if (!executes.isPresent()) throw new IllegalArgumentException("This shouldn't be happening");
         return executes.get().run(context);
     }
 

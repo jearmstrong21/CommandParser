@@ -14,7 +14,7 @@ import p0nki.commandparser.node.ArgumentCommandNode;
 import p0nki.commandparser.node.CommandNode;
 import p0nki.commandparser.node.LiteralCommandNode;
 
-import java.util.List;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
@@ -44,7 +44,7 @@ public class CommandDispatcherTests {
                 )
                 .then(new LiteralCommandNode<String, Integer>("alias1", "alias2", "alias3")
                         .documentation("[PLACEHOLDER]")
-                        .requires(new CommandRequirement<>() {
+                        .requires(new CommandRequirement<String>() {
                             @Override
                             public boolean isAvailableTo(String s) {
                                 return s.equals("allowed");
@@ -73,7 +73,7 @@ public class CommandDispatcherTests {
                 .documentation("[PLACEHOLDER]")
                 .then(new ArgumentCommandNode<String, Integer, String>("str", new GreedyStringArgumentType<>())
                         .documentation("[PLACEHOLDER]")
-                        .then(new ArgumentCommandNode<String, Integer, Integer>("int", new IntegerArgumentType<String>())
+                        .then(new ArgumentCommandNode<String, Integer, Integer>("int", new IntegerArgumentType<>())
                                 .documentation("[PLACEHOLDER]")
                                 .executes(context -> context.get("int", Integer.class) + context.get("str", String.class).length())
                         )
@@ -162,7 +162,7 @@ public class CommandDispatcherTests {
         CommandDispatcher.TreeResults<String, Integer> results = dispatcher.descendTree("source", "test");
         Assert.assertNull(results.exception);
         Assert.assertEquals(0, results.context.keys().size());
-        Assert.assertEquals(List.of("a", "b", "c"), results.nodes.stream().map(CommandNode::toString).collect(Collectors.toList()));
+        Assert.assertEquals(Arrays.asList("a", "b", "c"), results.nodes.stream().map(CommandNode::toString).collect(Collectors.toList()));
     }
 
     @Test
