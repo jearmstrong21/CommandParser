@@ -14,6 +14,6 @@ heres a thing I guess: It's basically mojang's brigadier but with more
         maven { url "https://jitpack.io" }
    }
    dependencies {
-         implementation 'com.github.jitpack:gradle-simple:1.0'
+         implementation 'com.github.p0nki:CommandParser:1.0'
    }
    ```
