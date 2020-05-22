@@ -35,6 +35,10 @@ public class IntegerArgumentType<S> implements ArgumentType<S, Integer> {
         }
     }
 
+    public static int get(CommandContext<?> context, String name){
+        return context.get(name, Integer.class);
+    }
+
     @Override
     public String getName() {
         if (minimum == Integer.MIN_VALUE && maximum == Integer.MAX_VALUE) {

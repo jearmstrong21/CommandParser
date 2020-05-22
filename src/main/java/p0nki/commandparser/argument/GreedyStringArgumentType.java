@@ -14,6 +14,10 @@ public class GreedyStringArgumentType<S> implements ArgumentType<S, String> {
         return Optional.of(str);
     }
 
+    public static String get(CommandContext<?> context, String name){
+        return context.get(name, String.class);
+    }
+
     @Override
     public String getName() {
         return "greedyString";

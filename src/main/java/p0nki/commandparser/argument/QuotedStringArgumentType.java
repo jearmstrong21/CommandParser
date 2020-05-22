@@ -33,6 +33,9 @@ public class QuotedStringArgumentType<S> implements ArgumentType<S, String> {
         return Optional.of(str.toString());
     }
 
+    public static String get(CommandContext<?> context, String name){
+        return context.get(name, String.class);
+    }
 
     @Override
     public String getName() {
