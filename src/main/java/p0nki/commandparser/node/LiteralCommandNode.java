@@ -5,6 +5,7 @@ import p0nki.commandparser.command.CommandReader;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class LiteralCommandNode<S, R> extends CommandNode<S, R> {
@@ -12,7 +13,11 @@ public class LiteralCommandNode<S, R> extends CommandNode<S, R> {
     private final Set<String> literals;
 
     public LiteralCommandNode(String... values) {
-        this(new HashSet<>(Arrays.asList(values)));
+        this(Optional.empty(), values);
+    }
+
+    public LiteralCommandNode(Optional<String> category, String... values) {
+        this(category, new HashSet<>(Arrays.asList(values)));
     }
 
     public Set<String> getLiterals() {
@@ -20,7 +25,11 @@ public class LiteralCommandNode<S, R> extends CommandNode<S, R> {
     }
 
     public LiteralCommandNode(Set<String> alias) {
-        super(String.join(", ", alias));
+        this(Optional.empty(), alias);
+    }
+
+    public LiteralCommandNode(Optional<String> category, Set<String> alias) {
+        super(category, String.join(", ", alias));
         literals = alias;
     }
 

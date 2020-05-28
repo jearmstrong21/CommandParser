@@ -15,6 +15,7 @@ import p0nki.commandparser.node.CommandNode;
 import p0nki.commandparser.node.LiteralCommandNode;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
@@ -89,7 +90,7 @@ public class CommandDispatcherTests {
                         )
                 )
         );
-        System.out.println(dispatcher.generateHelp());
+        System.out.println(dispatcher.generateHelp(Optional.empty()));
     }
 
     @Test

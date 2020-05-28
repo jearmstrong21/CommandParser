@@ -11,16 +11,22 @@ public abstract class CommandNode<S, R> {
 
     private final Set<CommandRequirement<S>> requirements;
     private final String name;
+    private final Optional<String> category;
     private final List<CommandNode<S, R>> children;
     private Optional<Command<S, R>> executes;
     private Optional<String> documentation;
 
-    public CommandNode(String name) {
+    public CommandNode(Optional<String> category, String name) {
         requirements = new HashSet<>();
         children = new ArrayList<>();
+        this.category = category;
         this.name = name;
         this.executes = Optional.empty();
         documentation = Optional.empty();
+    }
+
+    public Optional<String> getCategory() {
+        return category;
     }
 
     public Optional<Command<S, R>> getExecutes() {

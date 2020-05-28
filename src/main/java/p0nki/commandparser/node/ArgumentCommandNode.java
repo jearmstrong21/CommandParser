@@ -12,7 +12,7 @@ public class ArgumentCommandNode<S, R, T> extends CommandNode<S, R> {
     private final ArgumentType<S, T> argumentType;
 
     public ArgumentCommandNode(String name, ArgumentType<S, T> argumentType) {
-        super(name + ":" + argumentType.getName());
+        super(Optional.empty(), name + ":" + argumentType.getName());
         this.name = name;
         this.argumentType = argumentType;
     }
