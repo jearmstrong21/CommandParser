@@ -15,6 +15,7 @@ import p0nki.commandparser.node.CommandNode;
 import p0nki.commandparser.node.LiteralCommandNode;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -185,6 +186,13 @@ public class CommandDispatcherTests {
     @Test(expected = CommandSyntaxException.class)
     public void incompleteQuotedString() throws CommandSyntaxException {
         dispatcher.run("source", "bruh \"tes");
+    }
+
+    @Test
+    public void checkCategories() {
+        Assert.assertEquals(new HashSet<Optional<String>>() {{
+            add(Optional.empty());
+        }}, dispatcher.getCategories());
     }
 
 }

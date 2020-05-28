@@ -3,9 +3,9 @@ package p0nki.commandparser.command;
 import p0nki.commandparser.node.CommandNode;
 import p0nki.commandparser.node.RootCommandNode;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -96,9 +96,15 @@ public class CommandDispatcher<S, R> {
         }
     }
 
+    public Set<Optional<String>> getCategories() {
+        return root.getChildren().stream().map(CommandNode::getCategory).collect(Collectors.toSet());
+    }
+
+    // To check if all root nodes have a category: getCategories().contains(Optional.empty())
+
     public String generateHelp(Optional<String> category) {
         StringBuilder sb = new StringBuilder();
-        List<CommandNode<S, R>> nodes = new ArrayList<>(root.getChildren()).stream().filter(node -> node.getCategory().equals(category)).collect(Collectors.toList());
+        List<CommandNode<S, R>> nodes = root.getChildren().stream().filter(node -> node.getCategory().equals(category)).collect(Collectors.toList());
         List<Integer> depths = nodes.stream().map(o -> 0).collect(Collectors.toList());
         while (nodes.size() > 0) {
             CommandNode<S, R> node = nodes.get(0);
