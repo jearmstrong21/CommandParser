@@ -11,7 +11,7 @@ public abstract class CommandNode<S, R> {
 
     private final Set<CommandRequirement<S>> requirements;
     private final String name;
-    private final Optional<String> category;
+    private Optional<String> category;
     private final List<CommandNode<S, R>> children;
     private Optional<Command<S, R>> executes;
     private Optional<String> documentation;
@@ -39,6 +39,11 @@ public abstract class CommandNode<S, R> {
 
     public CommandNode<S, R> documentation(String documentation) {
         this.documentation = Optional.of(documentation);
+        return this;
+    }
+
+    public CommandNode<S, R> category(String category) {
+        this.category = Optional.of(category);
         return this;
     }
 
